@@ -1,0 +1,60 @@
+
+;; (defwidget workspaces []
+;; 	(literal :content workspace)
+;; )
+;; 
+;; (defwidget right []
+;; 	(box	:orientation "h"
+;; 			:space_evenly false
+;; 			:halign "start"
+;; 			:class "right_modules"
+;; 		(workspaces)
+;; 	)
+;; )
+
+(defvar eww "$HOME/.local/bin/eww/eww -c $HOME/.config/eww/bar")
+
+(defpoll clock_time :interval "5m" "date +\%I")
+
+(defwidget clock_module []
+	(eventbox	:onhover "${eww} update time_rev=true"
+				:onhoverlost "${eww} update time_rev=false"
+		(box	:class "module"
+				:space-evenly "false"
+				:orientation "h"
+				:spacing "3"
+			(label :text clock_time :class "clock_time_class")
+		)
+	)
+)
+
+(defwidget left []
+	(box	:orientation "h"
+			:space-evenly false
+			:halign "end"
+			:class "left_modules"
+		(clock_module)
+	)
+)
+
+(defwidget bar_1 []
+	(box	:class "bar_class"
+			:orientation "h"
+		;; (right)
+		(left)
+	)
+)
+
+(defwindow bar
+	:monitor 0
+	:geometry (geometry 
+		:x "0%"
+		:y "9px"
+		:width "98%"
+		:height "30px"
+		:anchor "top center"
+		)
+	:stacking "fg"
+	:windowtype "dock"
+	(bar_1)
+)
