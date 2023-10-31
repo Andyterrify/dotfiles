@@ -1,0 +1,44 @@
+-- Nvim configuration built with inpiration from
+-- https://github.com/simrat39/dotfiles/blob/master/nvim/.config/nvim/lua/statusline.lua
+
+
+-- perform normal tasks
+require("general")
+require("globals")
+require("mappings")
+require("plugins")
+require("statusline")
+
+-- load plugin configurations
+require("avasile_config/lsp") -- must be first
+require("avasile_config/compe")
+require("avasile_config/dashboard-nvim")
+require("avasile_config/fidget")
+require("avasile_config/gitsigns")
+require("avasile_config/indent-blankline")
+require("avasile_config/nvim-autopairs")
+require("avasile_config/colorizer")
+require("avasile_config/nvim-dap-ui")
+-- require("avasile_config/nvim-tree")
+require("avasile_config/telescope")
+require("avasile_config/tree-sitter")
+require("avasile_config/inlay-hints")
+require("avasile_config/hydra")
+require("avasile_config/marks")
+require("avasile_config/smooth_cursor")
+
+-- colourscheme
+vim.g.cappuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+require("catppuccin").setup({
+  integration = {
+    nvimtree = {
+      enabled = true,
+      show_root = false,
+      transparent_panel = true
+    }
+  }
+})
+vim.cmd([[colorscheme catppuccin]])
+
+
+vim.loader.enable()
