@@ -66,7 +66,8 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      -- { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -400,8 +401,13 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.completion.spell,
+    -- null_ls.builtins.completion.spell,
+    null_ls.builtins.completion.luasnip,
     null_ls.builtins.formatting.autopep8,
+    null_ls.builtins.diagnostics.lua,
+    null_ls.builtins.diagnostics.deno_lint,
+    null_ls.builtins.diagnostics.djlint,
+    null_ls.builtins.diagnostics.dotenv_linter
   },
 })
 
