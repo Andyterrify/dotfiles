@@ -38,62 +38,105 @@ require("kickstart.settings")
 require("kickstart.keymaps")
 
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
+---- -- [[ Highlight on yank ]]
+---- -- See `:help vim.highlight.on_yank()`
+---- local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+---- vim.api.nvim_create_autocmd('TextYankPost', {
+----   callback = function()
+----     vim.highlight.on_yank()
+----   end,
+----   group = highlight_group,
+----   pattern = '*',
+---- })
+---- 
+---- -- [[ Configure Telescope ]]
+---- require("kickstart.plugins.telescope")
+---- 
+---- -- [[ Configure Treesitter ]]
+---- -- See `:help nvim-treesitter`
+---- require("kickstart.plugins.treesitter")
+---- 
+---- -- [[ Configure LSP ]]
+---- require("kickstart.plugins.lsp")
+---- 
+---- -- [[ Configure nvim-cmp ]]
+---- -- See `:help cmp`
+---- require("kickstart.plugins.nvim-cmp")
+---- 
+---- -- -- [[ Configure Null LS ]]
+---- -- require("kickstart.plugins.null-ls")
+---- 
+---- -- [[ Configure Indent-Blankline ]]
+---- local highlight = {
+----   "RainbowRed",
+----   "RainbowYellow",
+----   "RainbowBlue",
+----   "RainbowOrange",
+----   "RainbowGreen",
+----   "RainbowViolet",
+----   "RainbowCyan",
+---- }
+---- 
+---- local hooks = require "ibl.hooks"
+---- -- create the highlight groups in the highlight setup hook, so they are reset
+---- -- every time the colorscheme changes
+---- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+----   vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+----   vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+----   vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+----   vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+----   vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+----   vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+----   vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+---- end)
+---- 
+---- require("ibl").setup({
+----   indent = { highlight = highlight },
+----   scope = {
+----     enabled = true,
+----     show_start = true,
+----     show_end = true
+----   }
+---- })
 
--- [[ Configure Telescope ]]
-require("kickstart.plugins.telescope")
+-- -- [[ Setup Oil ]]
+-- -- https://github.com/stevearc/oil.nvim
+-- 
+-- require("oil").setup(
+--   {
+--     default_file_explorer = true,
+--     columns = { "icon", "permissions", "size", "mtime" }
+--   }
+-- )
+-- 
+-- local harpoon = require("harpoon")
+-- 
+-- -- REQUIRED
+-- harpoon:setup()
+-- -- REQUIRED
+-- 
+-- vim.keymap.set("n", "<leader>t", function() harpoon:list():append() end)
+-- vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+-- 
+-- vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+-- vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+-- vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+-- vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
 
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
-require("kickstart.plugins.treesitter")
-
--- [[ Configure LSP ]]
-require("kickstart.plugins.lsp")
-
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
-require("kickstart.plugins.nvim-cmp")
-
--- [[ Configure Indent-Blankline ]]
-local highlight = {
-  "RainbowRed",
-  "RainbowYellow",
-  "RainbowBlue",
-  "RainbowOrange",
-  "RainbowGreen",
-  "RainbowViolet",
-  "RainbowCyan",
-}
-
-local hooks = require "ibl.hooks"
--- create the highlight groups in the highlight setup hook, so they are reset
--- every time the colorscheme changes
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-  vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-  vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-  vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-  vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-  vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-  vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-  vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-end)
-
-require("ibl").setup({
-  indent = { highlight = highlight },
-  scope = {
-    enabled = true,
-    show_start = true,
-    show_end = true
-  }
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

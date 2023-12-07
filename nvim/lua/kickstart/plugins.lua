@@ -26,8 +26,11 @@ require('lazy').setup({
       'folke/neodev.nvim',
       -- Nice Rust tools
       'simrat39/rust-tools.nvim',
+      'nvimtools/none-ls.nvim'
     },
   },
+
+  'joechrisellis/lsp-format-modifications.nvim',
 
   {
     -- Autocompletion
@@ -46,7 +49,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -84,6 +87,12 @@ require('lazy').setup({
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
     },
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   -- {
@@ -146,7 +155,10 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
-
+      {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+      },
     },
   },
 
@@ -168,6 +180,26 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+  },
+  "nvim-tree/nvim-tree.lua"
+
+  -- {
+  --   'neoclide/coc.nvim',
+  --   branch = "master",
+  --   build = "npm ci",
+  -- },
+  --
+  -- {
+  -- 'yaegassy/coc-cucumber',
+  --   build="npm ci"
+  -- },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
