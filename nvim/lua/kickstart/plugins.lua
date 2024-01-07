@@ -43,13 +43,24 @@ require('lazy').setup({
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
+      -- add completion from buffer
+      'hrsh7th/cmp-buffer',
+      -- add completion from filesystem
+      'hrsh7th/cmp-path',
+      'onsails/lspkind.nvim',
+
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
   },
 
+  {
+    'mbbill/undotree',
+    event = "VeryLazy",
+  },
+
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -88,28 +99,20 @@ require('lazy').setup({
       end,
     },
   },
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-
   -- {
-  --   -- Theme inspired by Atom
-  --   'navarasu/onedark.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
-  --   end,
+  --   'stevearc/oil.nvim',
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
   -- },
 
-  {
-    'catppuccin/nvim',
-    config = function()
-      vim.cmd.colorscheme 'catppuccin-macchiato'
-    end
-  },
+  -- {
+  --   'catppuccin/nvim',
+  --   config = function()
+  --    vim.cmd.colorscheme 'catppuccin-macchiato'
+  --   end,
+  --   event = "VeryLazy",
+  -- },
 
   {
     -- Set lualine as statusline
@@ -117,7 +120,7 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = 'onedark',
         component_separators = '|',
         section_separators = '',
@@ -135,7 +138,11 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    event = "VeryLazy",
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -169,7 +176,8 @@ require('lazy').setup({
       require("nvim-autopairs").setup {
         disable_filetype = { "TelescopePrompt", "vim" },
       }
-    end
+    end,
+    event = "VeryLazy",
   },
 
   {
@@ -187,31 +195,51 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
+    event = "VeryLazy",
   },
-  "nvim-tree/nvim-tree.lua"
+  "nvim-tree/nvim-tree.lua",
+  {
+    "gelguy/wilder.nvim",
+    cmd = "UpdateRemotePlugins",
+    event = "VeryLazy",
+  },
+  "nvim-tree/nvim-web-devicons",
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    config = function()
+      require('venv-selector').setup {
+        -- Your options go here
+        -- name = "venv",
+        -- auto_refresh = false
+      }
+    end,
+    event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    keys = {
+      -- Keymap to open VenvSelector to pick a venv.
+      { '<leader>vs', '<cmd>VenvSelect<cr>' },
+      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+      { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
+    }
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {}
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" }
+  },
 
-  -- {
-  --   'neoclide/coc.nvim',
-  --   branch = "master",
-  --   build = "npm ci",
-  -- },
-  --
-  -- {
-  -- 'yaegassy/coc-cucumber',
-  --   build="npm ci"
-  -- },
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
 }, {})

@@ -12,13 +12,12 @@ null_ls.setup({
         "yaml",
         "markdown",
         "graphql",
-        "md",
         "txt",
       },
       only_local = "node_modules/.bin"
     }),
-    -- null_ls.builtins.formatting.black.with({
-    --   filetypes = { "python" },
-    -- }),
-  },
+    null_ls.builtins.formatting.black.with({
+      extra_args = { "-S", "-t", "py312", "-l", "120" },
+    }),
+  }
 })

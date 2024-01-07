@@ -1,4 +1,3 @@
-
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
@@ -8,12 +7,43 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    prompt_prefix = "   ",
+    selection_caret = "  ",
+    entry_prefix = "   ",
+    dynamic_preview_title = true,
+    hl_result_eol = true,
+    sorting_strategy = "descending",
+    layout_config = {
+      horizontal = {
+        preview_width = 0.55,
+        results_width = 0.8,
+      },
+      vertical = {
+        mirror = false,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
   },
   extensions = {
     file_browser = {
       theme = "ivy",
       hijack_netrw = true,
-      depth = 2,
+    },
+    fzf = {
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    }
+  },
+  pickers = {
+    buffers = {
+      soft_lastused = true,
+      sort_mru = true,
+      ignore_current_buffer = true,
     }
   }
 }
@@ -51,7 +81,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -69,7 +99,6 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
@@ -77,3 +106,12 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>dp', require('telescope.builtin').diagnostics, { desc = 'View [D]ocument [P]roblems' })
+
+-- add git keybinds
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, { desc = 'Search [G]it [C]ommits' })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_bcommits, { desc = 'Search [G]it [B]uffer Commits' })
+vim.keymap.set('n', '<leader>gr', require('telescope.builtin').git_branches, { desc = 'Search [G]it b[R]anches' })
+vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_stash, { desc = 'Search [G]it [S]stash' })
+vim.keymap.set('n', '<leader>gg', require('telescope.builtin').git_status, { desc = 'Search [G]it' })
