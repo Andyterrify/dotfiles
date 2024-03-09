@@ -1,0 +1,11 @@
+alias l="eza --icons -g -M --git -l"
+alias vi="nvim"
+alias vim="nvim"
+
+alias ls="eza --icons -g"
+alias la="eza --icons -ga"
+alias ll="eza --icons -gl"
+alias lA="eza --icons -gla"
+
+alias gst="git status --column=dense"
+alias myip="curl http://ipecho.net/plain; echo"
