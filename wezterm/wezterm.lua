@@ -35,8 +35,8 @@ config.font = wezterm.font_with_fallback({
 config.font_size = 13.0
 config.freetype_load_target = "Light"
 
--- config.default_prog = { "zsh", "-l", "-c", "tmux attach || tmux" }
-config.default_prog = { "zsh", "-l" }
+config.default_prog = { "zsh", "-l", "-c", "tmux attach || tmux" }
+-- config.default_prog = { "zsh", "-l" }
 config.hide_tab_bar_if_only_one_tab = true
 config.term = "xterm-256color"
 config.enable_kitty_keyboard = true
