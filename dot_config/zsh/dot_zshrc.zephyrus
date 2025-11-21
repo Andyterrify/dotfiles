@@ -1,0 +1,26 @@
+# # The function will not be run in future, but you can run
+# it yourself as follows:
+#   autoload -Uz zsh-newuser-install
+#   zsh-newuser-install -f
+#
+# The code added to ~/.config/zsh/.zshrc is marked by the lines
+# # Lines configured by zsh-newuser-install
+# # End of lines configured by zsh-newuser-install
+# You should not edit anything between these lines if you intend to
+# run zsh-newuser-install again.  You may, however, edit any other part
+# of the file.
+#
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.config/zsh/.histfile
+HISTSIZE=2500
+SAVEHIST=10000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/avasile/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+
