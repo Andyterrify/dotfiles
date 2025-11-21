@@ -1,0 +1,11 @@
+# ~/.config/systemd/user/random-wallpaper.timer
+[Unit]
+Description=Runs wallpaper change every 10 minutes
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=10min
+Unit=random-wallpaper.service
+
+[Install]
+WantedBy=timers.target

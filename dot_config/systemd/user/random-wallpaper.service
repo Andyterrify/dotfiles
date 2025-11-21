@@ -1,0 +1,6 @@
+# ~/.config/systemd/user/random-wallpaper.service
+[Unit]
+Description=Change wallpaper randomly
+
+[Service]
+ExecStart=%h/.local/bin/random-wallpaper.sh
