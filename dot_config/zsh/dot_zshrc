@@ -1,0 +1,113 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/avasile/.config/zsh/completions:"* ]]; then export FPATH="/home/avasile/.config/zsh/completions:$FPATH"; fi
+# .zshenv   - Should only contain user’s environment variables.
+# .zprofile - Can be used to execute commands just after logging in.
+# .zshrc    - Should be used for the shell configuration and for executing commands
+# .zlogin   - Same purpose than .zprofile, but read just after .zshrc.
+# .zlogout  - Can be used to execute commands when a shell exit.#
+
+# --- [ ZINIT ] --- #
+### Added by Zinit's installer
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# # --- [ POWERLEVEL10K ] --- #
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+# # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# # Initialization code that may require console input (password prompts, [y/n]
+# # confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+# # --- [ (Prompt) Oh My Posh ] --- #
+# eval "$(oh-my-posh init zsh)"
+
+# --- [ (Prompt) Starship ] --- #
+eval "$(starship init zsh)"
+
+# --- [ PLUGINS ] --- #
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-completions \
+    MichaelAquilina/zsh-you-should-use
+
+# # --- [ COMPINSTALL ] --- #
+fpath=(/home/avasile/.config/zsh/completions $fpath)
+source $ZDOTDIR/.zcomp
+autoload -U compinit && compinit
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+#
+# # Load a few important annexes, without Turbo
+# # (this is currently required for annexes)
+# zinit light-mode for \
+#     zdharma-continuum/zinit-annex-as-monitor \
+#     zdharma-continuum/zinit-annex-bin-gem-node \
+#     zdharma-continuum/zinit-annex-patch-dl \
+#     zdharma-continuum/zinit-annex-rust
+#
+# zinit ice as"completion"
+# zinit snippet OMZP::rust/_rustc
+# zinit snippet OMZP::git
+#
+#
+# # --- [ VIM KEYBINDS ] --- #
+zmodload zsh/complist
+bindkey -v
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey '^p' history-search-backwards
+# bindkey '^n' history-search-forward
+
+# # --- [ History ] --- #
+HISTFILE=~/.config/zsh/.histfile
+HISTSIZE=2000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# meant to make nvim faster
+export KEYTIMEOUT=1
+# eval "$(fnm env --use-on-cd)"
+
+eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(zoxide init zsh)"
+
+# # eval "$(ssh-agent -s)"
+# # ssh-add $HOME/.ssh/personal
+export PATH="$PATH:$HOME/.local:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin"
+# export PATH="$PATH:$HOME/.local:$HOME/.local/bin:$HOME/bin:$HOME/.cargo/bin:$HOME/.local/share/fnm:/usr/local/cuda-12.3/bin"
+
+alias getip="curl -sL https://api64.ipify.org"
+
+# pnpm
+export PNPM_HOME="/home/avasile/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# . "/home/avasile/.deno/env"
