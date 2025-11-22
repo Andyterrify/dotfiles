@@ -1,171 +1,91 @@
-// -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 10, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "spacing": 4,
-    "name": "mainbar",
-    "reload_style_on_change": true,
-    "modules-left": [
-        "idle_inhibitor",
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad",
-        "sway/window",
-    ],
-    "modules-center": [
-    ],
-    "modules-right": [
-		"custom/nvidia",
-        "network#eth",
-        "network#wifi",
-        // "power-profiles-daemon",
-        "cpu",
-        // "load",
-        "memory",
-        "temperature",
-        // "backlight",
-        // "sway/language",
-        "battery",
-        "pulseaudio",
-        "clock",
-        "tray"
-    ],
-    // Modules configuration
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "warp-on-scroll": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "9": "",
-            "10": "",
-            "urgent": "",
-            "focused": "󰽏",
-            "default": ""
-        }
+  "layer": "top",
+  "position": "top",
+  "margin": "6 10 0 10",
+  "modules-left": ["hyprland/workspaces", ],
+  "modules-center": ["hyprland/window", ],
+  "modules-right": [
+	"cpu",
+	"memory",
+    "pulseaudio",
+    "network",
+	"clock",
+    "tray",
+  ],
+
+  // Left section
+  "hyprland/workspaces": {
+	  "actice-only": true,
+    "disable-scroll": true,
+    "all-outputs": false,
+    "on-click": "activate",
+    "format": "{id}{icon}",
+    "format-icons": {
+      "1": " 󰖟",
+      "2": " ",
+	  "default": "",
+    }
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 60
+  },
+
+  // Center section
+  "clock": {
+    "format": "{:%a %d %b %H:%M}",
+    "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+  },
+
+  // Right section
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": "󰾪"
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "interval": 30,
-        "format": "{:%b %d %R}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "Week {:%W %Y-%m-%dT%R}"
-    },
-    "cpu": {
-        // "format": "{usage}% ",
-        // "tooltip": false
-        "interval": 1,
-        "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7} ",
-        "tooltip": "{load}",
-        "format-icons": [
-             "<span color='#f8f8f2'>▁</span>", // white
-             "<span color='#f8f8f2'>▂</span>", // white
-             "<span color='#69ff94'>▃</span>", // green
-             "<span color='#69ff94'>▄</span>", // green
-             "<span color='#ffffa5'>▅</span>", // yellow
-             "<span color='#ffffa5'>▆</span>", // yellow
-             "<span color='#ff9977'>▇</span>", // orange
-             "<span color='#dd532e'>█</span>"  // red
-        ]
-    },
-    "load": {
-        "interval": 10,
-        "format": "{load1} {load5} {load15}",
-    },
-    "memory": {
-        "interval": 30,
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 32,
-            "critical": 16
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "network#eth": {
-        "interface": "enp3s0",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "network#wifi": {
-        "interface": "wlp4s0",
-        "format-wifi": "({signalStrength}%) {icon}",
-        "format-alt": "{essid} ({signalStrength}%) {icon}",
-        "tooltip-format": "{ipaddr}/{gwaddr} via {ifname} ({signaldBm} db {frequency} GHz)",
-        "format-linked": "{ifname} (No IP) {icon}",
-        "format-disconnected": "Down 󱚼",
-        "format-icons": {
-            "default": ["󰤟", "󰤢", "󰤥", "󰤨"]
-        },
-    },
-    "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
-        "format-muted": "󰝟 {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-	"custom/nvidia": {
-		"exec": "~/.local/scripts/gpu-state.sh",
-		"interval": 60,
-		"return-type": "json",
-		"format": "{}"
+    "on-click": "pavucontrol"
+  },
+
+  "network": {
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰖪 disconnected"
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 5
+  },
+
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout"
+  },
+
+  "cpu": {
+	  "interval": 2,
+	  "format": "󰻠 {usage}%",
+	  "tooltip": true,
+	  "on-click": "ghostty -e btop"
+  },
+  "network": {
+	  "format-wifi": " {essid} ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+	  "format-ethernet": "󰈀 ↓{bandwidthDownBits} ↑{bandwidthUpBits}",
+	  "format-disconnected": "󰖪 disconnected",
+	  "interval": 2,
+	  "tooltip": true
+	},
+	"memory": {
+	  "interval": 5,
+	  "format": " {percentage}%",
+	  "on-click": "alacritty -e btop"
 	}
+
+
 }
