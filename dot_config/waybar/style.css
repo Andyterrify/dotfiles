@@ -1,0 +1,119 @@
+* {
+	border: none;
+	border-radius: 6px;
+	/*font-family: 'Symbols Nerd Font Mono', 'MonaspiceNe Nerd Font Mono', 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;*/
+	/*font-family: 'Berkeley Mono';*/
+	font-family: 'Berkeley Mono';
+	font-weight: bold;
+	font-size: 16px;
+	color: white;
+}
+
+window#waybar {
+	background-color: #0D1321;
+	border-bottom: solid #1D2D44 2px;
+}
+
+.module {
+	margin-left: 8px;
+	margin-right: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+
+#workspaces button {
+	border-radius: 0px;
+}
+
+#workspaces button.visible {}
+
+#workspaces button.current_output {
+	background-color: #1D1A31;
+	border-bottom: solid #DA9F93 2px;
+}
+
+
+/*#workspaces button.persistent {*/
+/*    background-color: #890620;*/
+/*    border-bottom: solid #DA9F93 2px;*/
+/*}*/
+/**/
+/*#workspaces button.empty {*/
+/*    background-color: #890620;*/
+/*    border-bottom: solid #DA9F93 2px;*/
+/*}*/
+
+#workspaces button.focused {
+	background-color: #7161EF;
+	border-bottom: solid #D6D5C9 2px;
+}
+
+
+#workspaces button.urgent {
+	background-color: #890620;
+	border-bottom: solid #DA9F93 2px;
+}
+
+
+#network {
+	transition: none;
+}
+
+#pulseaudio {
+	transition: none;
+}
+
+#battery {
+	transition: none;
+}
+
+#battery.charging,
+#battery.plugged {
+	/* background-color: #B5E8E0; */
+}
+
+#battery.critical:not(.charging) {
+	/* background-color: #B5E8E0;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; */
+}
+
+#backlight {
+	transition: none;
+}
+
+#clock {
+	transition: none;
+}
+
+#memory {
+	transition: none;
+}
+
+#cpu {
+	transition: none;
+}
+
+#tray {
+	transition: none;
+}
+
+.gpumon_off {
+	color: red;
+}
+
+.gpumon_act {
+	color: #76b900;
+}
+
+.gpumon_inc {
+	color: white;
+}
+
+.gpumon_unk {
+	color: orange;
+}
