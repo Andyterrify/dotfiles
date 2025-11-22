@@ -1,0 +1,9 @@
+[Unit]
+Description=Trash files older than 30 days from user Downloads
+
+[Service]
+Type=exec
+ExecStart=%h/.local/share/scripts/delete_old_downloads.sh
+
+[Install]
+WantedBy=multi-user.target
