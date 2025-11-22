@@ -6,4 +6,4 @@ Type=exec
 ExecStart=%h/.local/share/scripts/delete_old_downloads.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
