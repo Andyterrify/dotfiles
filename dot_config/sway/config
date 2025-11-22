@@ -133,7 +133,8 @@ input "64562:647:JosefAdamcik_Sofle_Keyboard" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
+    bindsym $mod+d exec fuzzel
 	# unbindsym $modv
     # bindsym $mod+Space exec $menu
 
