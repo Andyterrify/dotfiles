@@ -1,5 +1,0 @@
-# Set path only once
-export PATH="$HOME/.local/bin:$PATH"
-
-# Start SSH agent, etc.
-eval "$(ssh-agent -s)"

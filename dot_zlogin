@@ -1,0 +1,9 @@
+# vim: ft=conf
+
+# Rebuild compdump once per day
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit -C
+else
+  compinit
+fi
