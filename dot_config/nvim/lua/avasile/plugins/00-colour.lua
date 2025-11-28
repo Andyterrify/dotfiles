@@ -33,5 +33,9 @@ return {
 			vim.cmd("let ayucolor='dark'")
 			vim.cmd("colorscheme ayu")
 		end
+	},
+	{
+		"https://github.com/vague2k/vague.nvim"
 	}
+
 }

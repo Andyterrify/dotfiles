@@ -293,7 +293,7 @@ M.lsp = {
 		vim.lsp.inlay_hint.enable() -- new, 0.10
 
 		-- where servers are setup and configured
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 		local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -308,7 +308,9 @@ M.lsp = {
 			-- use configured capabilities (if they exist) or create
 			server_opts.capabilities = server_opts.capabilities or lsp_capabilities
 
-			lspconfig[server_name].setup(server_opts)
+			vim.lsp.enable(server_name)
+			vim.lsp.config(server_name, server_opts)
+			-- lspconfig[server_name].setup(server_opts)
 		end
 
 		-- mason servers
@@ -374,7 +376,7 @@ M.lsp = {
 		--   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 		-- }
 
-		lspconfig.volar.setup {}
+		-- lspconfig.volar.setup {}
 
 		-- non-mason servers
 		setup_lsp_server("pyright")
