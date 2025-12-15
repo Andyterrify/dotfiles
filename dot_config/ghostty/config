@@ -14,7 +14,7 @@ window-padding-balance = true
 background-opacity = 0.8
 background-blur-radius = 20
 cursor-style = "block"
-font-size = 16
+font-size = 18
 
 # font-feature = calt
 # font-feature = ss01
@@ -26,7 +26,7 @@ font-size = 16
 # font-feature = ss09
 # font-feature = liga
 
-font-family = "Berkeley Mono"
+font-family = "Berkeley Mono SemiCondensed"
 term = xterm-256color
 # font-synthetic-style = false
 
