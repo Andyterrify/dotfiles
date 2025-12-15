@@ -41,7 +41,7 @@ setopt EXTENDED_HISTORY HIST_IGNORE_DUPS HIST_FIND_NO_DUPS HIST_IGNORE_SPACE \
 
 
 ########## [ 3. Shell Behavior and Navigation ] ##########
-setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT CORRECT_ALL
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 bindkey -v # VIM keybinds
 export KEYTIMEOUT=1
 
@@ -117,5 +117,5 @@ alias vim="nvim"
 eval "$(starship init zsh)"
 
 
-########## [ 9. External Sources ] ##########
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+# ########## [ 9. External Sources ] ##########
+# [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
