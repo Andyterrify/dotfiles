@@ -1,0 +1,66 @@
+* {
+  border: none;
+  border-radius: 6px;
+  font-family: "Berkeley Mono", "Symbols Nerd Font" , monospace;
+  font-size: 13pt;
+  min-height: 20px;
+  padding: 0 2px;
+}
+
+window#waybar {
+  background: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
+  padding: 2px 4px;
+}
+
+#workspaces button {
+  padding: 2px 8px;
+  color: #b4befe;
+}
+
+#workspaces button.active {
+  background-color: #8caaee;
+  color: #1e1e2e;
+}
+
+#workspaces button.urgent {
+  background-color: red;
+  color: #1e1e2e;
+}
+
+#clock,
+#network,
+#pulseaudio,
+#battery,
+#tray,
+#custom-power {
+  padding: 0 8px;
+  margin: 0 4px;
+  border-radius: 5px;
+}
+
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-power:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease;
+}
+
+#cpu,
+#network {
+  padding: 0 8px;
+  margin: 0 4px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#memory {
+	padding: 8px 8px;
+}
+
+#cpu:hover,
+#memory:hover,
+#network:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
