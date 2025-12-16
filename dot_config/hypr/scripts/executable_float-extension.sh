@@ -11,7 +11,7 @@ socat -U - UNIX-CONNECT:"$events_socket" | while read -r line; do
 		echo $data $addr $title
 		if [[ "$title" =~ ^Extension.*Bitwarden.* ]]; then
 			echo toggling floating window $addr
-			hyprctl --batch "dispatch setfloating address:0x$addr; dispatch resizewindowpixel exact 15% 35%,address:0x$addr; dispatch centerwindow address:0x$addr"
+			hyprctl --batch "dispatch setfloating address:0x$addr; dispatch resizewindowpixel exact 15% 35%,address:0x$addr; dispatch centerwindow address:0x$addr; dispatch focuswindow address:0x$addr"
 		fi
 		echo ""
     fi
