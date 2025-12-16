@@ -1,0 +1,1 @@
+pacman -S appmenu-gtk-module libdbusmenu-glib amdgpu_top asusctl darktable mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon radeontop vulkan-tools amd-ucode nvtop lf uv linux-cachyos-nvidia linux-cachyos-nvidia-open trash-cli imv mpv grim slurp wev easyeffects calf mako fuzzel socat wlogout
