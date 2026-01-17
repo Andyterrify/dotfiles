@@ -1,5 +1,5 @@
 # Universal environment
-export PATH="$HOME/.cargo/bin:$HOME/go/bin:$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/bin:/usr/local/go/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM="xterm-256color"
