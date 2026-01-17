@@ -19,11 +19,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
 -- setup neovim opts and keymaps
 require("avasile.opts")
-require("avasile.remap")
+require("avasile.keymaps")
 
--- setup plugin
+-- setup plugin manager
 require("avasile.lazy")
-require("avasile.config.autocmds").qol.setup()
 
 vim.cmd("colorscheme vague")
 
