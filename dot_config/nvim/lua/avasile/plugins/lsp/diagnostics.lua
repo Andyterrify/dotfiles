@@ -32,8 +32,8 @@ M.setup = function()
 		},
 	})
 
-	-- Configure hover windows
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	-- Configure hover windows with rounded borders
+	vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = "rounded",
 	})
 

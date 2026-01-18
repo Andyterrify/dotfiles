@@ -24,12 +24,12 @@ return {
 
 			-- List of servers to configure
 			local servers = {
-				"lua_ls",
-				"ts_ls",
+				-- "lua_ls",
+				-- "ts_ls",
 				"gopls",
-				"rust_analyzer",
-				"pyright",
-				"tailwindcss",
+				-- "rust_analyzer",
+				-- "pyright",
+				-- "tailwindcss",
 			}
 
 			-- Configure and enable each server
@@ -38,6 +38,7 @@ return {
 				config.capabilities = capabilities
 				vim.lsp.config(server, config)
 				vim.lsp.enable(server)
+				vim.notify("Enabled LSP server " .. server)
 			end
 
 			-- Enable inlay hints globally

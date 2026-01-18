@@ -12,9 +12,9 @@ M.setup = function(client, bufnr)
 	-- ============================================================================
 
 	-- Diagnostics (provided by Neovim, not the server)
-	map("n", "<leader>cd", vim.diagnostic.open_float, "[C]ode [D]iagnostics")
-	map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-	map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
+	map("n", "<leader>cd", vim.diagnostic.open_float(), "[C]ode [D]iagnostics")
+	map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous Diagnostic")
+	map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
 
 	-- Toggle inlay hints (Neovim feature)
 	map("n", "<leader>th", function()
@@ -112,24 +112,24 @@ end
 -- ============================================================================
 -- HELPER: Check if server supports a specific capability
 -- ============================================================================
--- Usage: if M.has_capability(client, "hoverProvider") then ... end
-M.has_capability = function(client, capability)
-	if not client or not client.server_capabilities then
-		return false
-	end
-
-	local value = client.server_capabilities[capability]
-
-	-- Capabilities can be:
-	-- - true (supported)
-	-- - false/nil (not supported)
-	-- - a table with options (supported with config)
-	if type(value) == "table" then
-		return true
-	end
-
-	return value == true
-end
+-- -- Usage: if M.has_capability(client, "hoverProvider") then ... end
+-- M.has_capability = function(client, capability)
+-- 	if not client or not client.server_capabilities then
+-- 		return false
+-- 	end
+--
+-- 	local value = client.server_capabilities[capability]
+--
+-- 	-- Capabilities can be:
+-- 	-- - true (supported)
+-- 	-- - false/nil (not supported)
+-- 	-- - a table with options (supported with config)
+-- 	if type(value) == "table" then
+-- 		return true
+-- 	end
+--
+-- 	return value == true
+-- end
 
 -- ============================================================================
 -- HELPER: Get all available LSP commands for current buffer

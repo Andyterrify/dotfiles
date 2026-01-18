@@ -46,8 +46,8 @@ M.setup = function(client, bufnr)
 	-- ============================================================================
 
 	map("n", "<leader>cd", vim.diagnostic.open_float, "[C]ode [D]iagnostics")
-	map("n", "[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-	map("n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
+	map("n", "[d", vim.diagnostic.jump({ count = -1, float = true }), "Previous Diagnostic")
+	map("n", "]d", vim.diagnostic.jump({ count = 1, float = true }), "Next Diagnostic")
 
 	map("n", "<leader>th", function()
 		local new_state = not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })

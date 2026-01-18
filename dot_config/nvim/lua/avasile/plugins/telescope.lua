@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
+		tag = "v0.2.1",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
@@ -87,7 +87,7 @@ return {
 
 	-- FZF native for better performance
 	{
-		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install'
-	}
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+	},
 }
